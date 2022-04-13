@@ -109,9 +109,6 @@ class ProtoGenServiceAction : AnAction() {
                 } else {
                     if (requestList[1].type?.text != ("*" + item["REQUEST_TYPE"])) {
                         flag = true
-                        println(requestList[1].text)
-                        println(requestList[1].type?.text)
-                        println(item["REQUEST_TYPE"])
                     }
                 }
                 if (response?.size != 2) {
@@ -119,8 +116,6 @@ class ProtoGenServiceAction : AnAction() {
                 } else {
                     if (response[0].type?.text != ("*" + item["RESPONSE_TYPE"])) {
                         flag = true
-                        println(response[0].text)
-                        println(item["RESPONSE_TYPE"])
                     }
                 }
             } else {
