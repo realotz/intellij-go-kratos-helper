@@ -1,8 +1,8 @@
 # go-kratos-helper
-go kratos 助手工具
+goland go kratos 助手插件
 
 ## 待办
-- [x] 根据protobuf文件生成service文件，支持methods合并 （ps meassage名称修改会重复methods）
+- [x] 根据protobuf文件生成service文件，支持methods合并（ps meassage名称修改会导致methods重复）
 - [ ] service 自动wire注入
 - [ ] domain object 生成proto message
 - [ ] domain object 生成ent gorm 结构
