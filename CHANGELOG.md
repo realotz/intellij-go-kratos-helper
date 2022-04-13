@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# intellij-go-kratos-helper Changelog
+# go-kratos-helper Changelog
 
 ## [Unreleased]
 ### Added

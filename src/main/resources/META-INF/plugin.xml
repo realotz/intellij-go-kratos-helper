@@ -1,18 +1,48 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.realotz.intellijgokratoshelper</id>
-    <name>intellij-go-kratos-helper</name>
+    <id>com.github.realotz.kratosHelper</id>
+    <name>Go-Kratos-Helper</name>
     <vendor>realotz</vendor>
 
     <depends>com.intellij.modules.platform</depends>
-
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.go</depends>
+    <!-- Requires the Go plugin -->
+    <depends>org.jetbrains.plugins.go</depends>
+    <!-- Requires the platform module to distinguish it from a legacy plugin -->
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.realotz.intellijgokratoshelper.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.realotz.intellijgokratoshelper.services.MyProjectService"/>
+        <applicationService serviceImplementation="com.github.realotz.kratosHelper.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.realotz.kratosHelper.services.MyProjectService"/>
+        <projectService serviceImplementation="com.github.realotz.kratosHelper.services.StorageService" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.realotz.intellijgokratoshelper.listeners.MyProjectManagerListener"
+        <listener class="com.github.realotz.kratosHelper.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+<!--        <action class="com.github.realotz.kratosHelper.actions.CreateSerivce">-->
+<!--            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>-->
+<!--        </action>-->
+        <group id="GoKratos.HelperMenu" text="Go Kratos" description="Go kratos menu">
+            <add-to-group group-id="MainMenu" anchor="last"  />
+        </group>
+        <action id="kratos.helper.protoService" class="com.github.realotz.kratosHelper.actions.ProtoServiceAction" text="Proto Parse" description="根据proto创建service">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ReplaceInPath"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift alt Q"/>
+        </action>
+        <action id="kratos.helper.protoGenService" class="com.github.realotz.kratosHelper.actions.ProtoGenServiceAction" text="Proto Create Service" description="根据proto创建service">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ReplaceInPath"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift alt N"/>
+        </action>
+<!--        <action id="kratos.helper.protoService" class="com.github.realotz.kratosHelper.actions.ProtoServiceAction"-->
+<!--                text="Proto Service" description="Proto gen service.go">-->
+<!--            <add-to-group group-id="GoKratos.HelperMenu" anchor="first"/>-->
+<!--        </action>-->
+        <action id="go.kratos.helper.CodeGenMenu" class="com.github.realotz.kratosHelper.actions.CodeGenMenuAction"
+                text="kratos gen" description="kratos gen">
+            <add-to-group group-id="BuildMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift alt K"/>
+        </action>
+    </actions>
 </idea-plugin>

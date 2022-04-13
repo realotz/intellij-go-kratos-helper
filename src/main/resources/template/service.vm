@@ -1,0 +1,22 @@
+package ${GO_PACKAGE_NAME}
+
+// New${SERVICE} . add wire set
+func New${SERVICE}(logger log.Logger) ${PROTO_PACKAGE}.${SERVICE}Server {
+	return &${SERVICE}{
+	    log:  log.NewHelper(logger),
+	}
+}
+
+//${SERVICE} ${SERVICE_DESC}
+type ${SERVICE} struct {
+	${PROTO_PACKAGE}.Unimplemented${SERVICE}Server
+	log  *log.Helper
+}
+
+#foreach($RPC in $RPCS)
+// ${RPC.NAME} ${RPC.DOCUMENTATION}
+func (u ${SERVICE}) ${RPC.NAME}(ctx context.Context, req *${RPC.REQUEST_TYPE}) (*${RPC.RESPONSE_TYPE}, error) {
+    return &${RPC.RESPONSE_TYPE}{}, nil
+}
+#end
+

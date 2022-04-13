@@ -1,1 +1,1 @@
-rootProject.name = "intellij-go-kratos-helper"
+rootProject.name = "go-kratos-helper"

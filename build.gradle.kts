@@ -3,6 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
 
+dependencies {
+    // https://mvnrepository.com/artifact/com.squareup.wire/wire-schema
+    implementation("com.squareup.wire:wire-schema:3.1.0")
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+}
+
 plugins {
     // Java support
     id("java")
@@ -23,6 +29,7 @@ version = properties("pluginVersion")
 repositories {
     mavenCentral()
 }
+
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {

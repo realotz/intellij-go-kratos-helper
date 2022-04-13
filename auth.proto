@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package domestic.user.service;
+import "api/base/core.proto";
+import "google/protobuf/timestamp.proto";
+option go_package = "github.com/realotz/domestic/api/user/service;user";
+
+// 群组服务
+service FriendService {
+  // 好友列表
+  rpc FriendList(base.Empty)returns(FriendListReply);
+  // 备注好友
+  rpc FriendRemark(FriendRemarkReq)returns(base.Empty);
+  // 添加好友
+  rpc AddFriend(FriendAddReq)returns(base.Empty);
+  // 发送申请好友列表
+  rpc SendFriendApplyList(base.Empty)returns(FriendApplyListReply);
+  // 接收申请好友列表
+  rpc RecvFriendApplyList(base.Empty)returns(FriendApplyListReply);
+  // 接受好友申请
+  rpc AcceptFriendApply(AcceptFriendApplyReq)returns(base.Empty);
+  // 拒绝好友申请
+  rpc RefuseFriendApply(AcceptFriendApplyReq)returns(base.Empty);
+  // 删除好友
+  rpc DeleteFriend(DeleteFriendReq)returns(base.Empty);
+  // 添加黑名单
+  rpc AddBlack(BlackReq)returns(base.Empty);
+  // 移除黑名单
+  rpc RemoveBlack(BlackReq)returns(base.Empty);
+  // 黑名单列表
+  rpc BlackList(base.Empty)returns(BlackListReply);
+}
+
+message Black{
+  uint32 user_id=1;
+  int32 add_source=2;
+  uint32 block_user_id=3;
+  base.User user =5;
+  google.protobuf.Timestamp created_at = 7;
+}
+
+message BlackListReply{
+  repeated Black list =1;
+  int64 total=2;
+}
+
+message BlackReq{
+  uint32 user_id=1;
+}
+
+message DeleteFriendReq{
+  uint32 user_id=1;
+}
+
+message AcceptFriendApplyReq{
+  uint32 apply_id = 1;
+  string handle_Msg=2;
+}
+
+message Friend{
+  base.User user =1;
+  // 备注
+  string remark=2;
+  // 添加方式 0 系统 1 用户搜索 2 手机号搜索
+  int32 add_source = 3;
+}
+
+message FriendListReply{
+  repeated Friend list =1;
+  int64 total=2;
+}
+
+message FriendApply{
+  uint32 id =99;
+  uint32 user_id=1;
+  uint32 to_user_id=2;
+  string handle_result=3;
+  string req_msg=4;
+  uint32 handler_user_id=5;
+  string handle_msg=6;
+  // 创建时间
+  google.protobuf.Timestamp created_at = 7;
+  // 更新时间
+  google.protobuf.Timestamp updated_at = 8;
+  google.protobuf.Timestamp handle_time = 9;
+}
+
+message FriendApplyListReply{
+  repeated FriendApply list =1;
+  int64 total=2;
+}
+
+message FriendRemarkReq{
+  // 备注用户id
+  uint32 to_user_id = 1;
+  // 备注
+  string remark=2;
+}
+
+message FriendAddReq{
+  uint32 to_user_id = 1;
+  string req_msg = 2;
+}
