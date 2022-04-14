@@ -1,6 +1,10 @@
 # go-kratos-helper
 goland go kratos 助手插件
 
+<!-- Plugin description -->
+**go-kratos-helper** is go-kratos helper plugin
+<!-- Plugin description end -->
+
 ## 待办
 - [x] 根据protobuf文件生成service文件，支持methods合并（ps meassage名称修改会导致methods重复）
 - [ ] service 自动wire注入

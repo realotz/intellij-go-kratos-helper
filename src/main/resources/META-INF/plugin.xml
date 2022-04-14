@@ -14,6 +14,7 @@
         <applicationService serviceImplementation="com.github.realotz.kratosHelper.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.realotz.kratosHelper.services.MyProjectService"/>
         <projectService serviceImplementation="com.github.realotz.kratosHelper.services.StorageService" />
+        <annotator language="go" implementationClass="com.github.realotz.kratosHelper.annotators.AutoWireAnnotator"/>
     </extensions>
 
     <applicationListeners>

@@ -6,6 +6,7 @@ fun properties(key: String) = project.findProperty(key).toString()
 dependencies {
     // https://mvnrepository.com/artifact/com.squareup.wire/wire-schema
     implementation("com.squareup.wire:wire-schema:3.1.0")
+    implementation("com.squareup.wire:wire-schema:3.1.0")
     implementation("org.junit.jupiter:junit-jupiter:5.7.0")
 }
 
